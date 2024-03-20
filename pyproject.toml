@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "harjoitustyo-connect4"
+version = "0.1.0"
+description = ""
+authors = ["Harri <harri.gavert@helsinki.fi>"]
+readme = "README.md"
+packages = [{include = "harjoitustyo_connect4"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+coverage = "^7.4.4"
+pylint = "^3.1.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
