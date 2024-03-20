@@ -10,6 +10,7 @@ packages = [{include = "harjoitustyo_connect4"}]
 python = "^3.8"
 coverage = "^7.4.4"
 pylint = "^3.1.0"
+pytest = "^8.1.1"
 
 
 [build-system]
