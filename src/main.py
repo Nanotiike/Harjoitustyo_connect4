@@ -1,9 +1,11 @@
-# Contains the main loop of the game. Responsible for handling user and ai input and updating the game state.
+# Responsible for handling user and ai input and updating the game state.
 from board import Board
 from player import Player
 from ai import Ai
 
 def main():
+    # Main loop of the game.
+
     board = Board()
     player1 = Player("Player 1", "Y")
     player2 = Player("Player 2", "R")
