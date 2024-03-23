@@ -16,4 +16,6 @@ class Player:
                 print("Invalid input, please enter a number between 1 and 7")
             elif not board.make_move(int(move) - 1, self.symbol):
                 print("Column is full, please choose another column")
-            move = input(f"{self.name} make your move (1-7): ")
+            move = input(f"{self.name} make your move (1-7), or quit (q): ")
+            if move == "q":
+                exit()
