@@ -13,19 +13,21 @@ class Board:
 
     def check_for_winner(self):
         winner = None
-        while winner == None:
-            for i in range(5, -1, -1):
-                for j in range(7):
-                    if self.board[i][j] != " ":
-                        if i + 3 < 6 and self.board[i][j] == self.board[i + 1][j] == self.board[i + 2][j] == self.board[i + 3][j]:
-                            winner = self.board[i][j]
-                        if j + 3 < 7 and self.board[i][j] == self.board[i][j + 1] == self.board[i][j + 2] == self.board[i][j + 3]:
-                            winner = self.board[i][j]
-                        if i + 3 < 6 and j + 3 < 7 and self.board[i][j] == self.board[i + 1][j + 1] == self.board[i + 2][j + 2] == self.board[i + 3][j + 3]:
-                            winner = self.board[i][j]
-                        if i - 3 >= 0 and j + 3 < 7 and self.board[i][j] == self.board[i - 1][j + 1] == self.board[i - 2][j + 2] == self.board[i - 3][j + 3]:
-                            winner = self.board[i][j]
-            break
+        for i in range(5, -1, -1):
+            for j in range(7):
+                if self.board[i][j] != " ":
+                    if i - 3 >= 0 and self.board[i][j] == self.board[i - 1][j] == self.board[i - 2][j] == self.board[i - 3][j]:
+                        winner = self.board[i][j]
+                    if j + 3 < 7 and self.board[i][j] == self.board[i][j + 1] == self.board[i][j + 2] == self.board[i][j + 3]:
+                        winner = self.board[i][j]
+                    if i + 3 < 6 and j + 3 < 7 and self.board[i][j] == self.board[i + 1][j + 1] == self.board[i + 2][j + 2] == self.board[i + 3][j + 3]:
+                        winner = self.board[i][j]
+                    if i - 3 >= 0 and j + 3 < 7 and self.board[i][j] == self.board[i - 1][j + 1] == self.board[i - 2][j + 2] == self.board[i - 3][j + 3]:
+                        winner = self.board[i][j]
+                if winner != None:
+                    break
+            if winner != None:
+                break
         return winner
 
     def __str__(self):
