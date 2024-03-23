@@ -6,7 +6,9 @@ class Player:
         self.symbol = symbol
 
     def make_move(self, board):
-        move = input(f"{self.name} make your move (1-7): ")
+        move = input(f"{self.name} make your move (1-7), or quit (q): ")
+        if move == "q":
+            exit()
         while not move.isdigit() or not 1 <= int(move) <= 7 or not board.make_move(int(move) - 1, self.symbol):
             if not move.isdigit():
                 print("Invalid input, please enter a number")
