@@ -25,17 +25,20 @@ class Ai:
     def make_move(self, board):
         """Makes a move on the board using the minimax algorithm."""
         moves = []
+        move_made = False
         for column in self.moves:
             best_move = -100000
             if board.make_move(column, self.symbol):
                 best_move = max(self.evaluate, self.minimax(board, 3, False))
                 board.undo_move(column)
-                moves.append(best_move)
+                moves.append([best_move, column])
                 print(column, best_move,moves)
         for i in range(len(moves)):
-            if moves[i] == max(moves):
-                board.make_move(self.moves[i], self.symbol)
+            if moves[i][0] == max(moves):
+                board.make_move(self.moves[i][1], self.symbol)
                 break
+        if not move_made:
+            self.make_move_rng(board)
             
 
     def minimax(self, board, depth, is_maximizing):
