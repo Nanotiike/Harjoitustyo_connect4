@@ -21,3 +21,4 @@ class Player:
             move = input(f"{self.name} make your move (1-7), or quit (q): ")
             if move == "q":
                 sys.exit()
+        return ((move,self.name))
