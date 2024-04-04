@@ -1,4 +1,4 @@
-# Contains the player class, which is used to represent a player in the game and handles player inputs.
+"""Contains the player class, which is used to represent a player in the game and handles player inputs."""
 import sys
 
 class Player:
@@ -7,7 +7,7 @@ class Player:
         self.symbol = symbol
 
     def make_move(self, board):
-        # Asks the player for input and updates the board according to it.
+        """Asks the player for input and updates the board according to it."""
         move = input(f"{self.name} make your move (1-7), or quit (q): ")
         if move == "q":
             sys.exit()

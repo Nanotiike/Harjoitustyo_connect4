@@ -1,4 +1,11 @@
 """Contains Ai class which will be the main focus of the project. The Ai class will use the minimax algorithm and alhpa-beta pruning algorithm."""
+"""The minimax algorithm is an algorithm used for two-player games. 
+The minimax algorithm is a recusrisve algorithm used to determine the best possible move when you don't know the opponents move. 
+The algorithm assumes that the opponent will play the best possible move for them, thus the algorithm will try to minimize the maximum loss."""
+"""The alpha-beta pruning algorithm is an optimization technique for the minimax algorithm. 
+It reduces the number of nodes that are evaluated by the minimax algorithm in its search tree. 
+The algorithm maintains two values, alpha and beta, which represent the minimum score that the maximizing player is assured of and the maximum score that the minimizing player is assured of respectively. 
+Based on these two values the algorithm prunes the nodes that are not needed to be evaluated."""
 import random
 
 class Ai:

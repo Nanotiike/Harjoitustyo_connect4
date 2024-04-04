@@ -1,4 +1,4 @@
-# File to mock the input and output functions for test classes.
+"""File to mock the input and output functions for test classes."""
 import builtins
 
 input_values = []

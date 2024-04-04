@@ -1,10 +1,10 @@
-# Contains the board class, which is responsible for the game board, making moves and checking for victory.
+"""Contains the board class, which is responsible for the game board, making moves and checking for victory."""
 class Board:
     def __init__(self):
         self.board = [[" "for _ in range(7)] for _ in range(6)]
 
     def make_move(self, column, symbol):
-        # Makes a move in the given column with the given symbol.
+        """Makes a move in the given column with the given symbol."""
         while True:
             for i in range(5, -1, -1):
                 if self.board[i][column] == " ":
@@ -13,7 +13,7 @@ class Board:
             return False
 
     def check_for_winner(self):
-        # Checks if there is a winner on the board.
+        """Checks if there is a winner on the board."""
         winner = None
         for i in range(5, -1, -1):
             for j in range(7):
@@ -33,14 +33,14 @@ class Board:
         return winner
     
     def undo_move(self, column):
-        # Undoes a move in the given column.
+        """Undoes a move in the given column."""
         for i in range(6):
             if self.board[i][column] != " ":
                 self.board[i][column] = " "
                 break
 
     def __str__(self):
-        # Returns the board as a string.
+        """Returns the board as a string."""
         board_string = ""
         board_string += "-----------------------------\n"
         for i in range(6):

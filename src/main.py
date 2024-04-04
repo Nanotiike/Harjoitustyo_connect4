@@ -1,10 +1,10 @@
-# Responsible for handling user and ai input and updating the game state.
+"""Responsible for handling user and ai input and updating the game state."""
 from board import Board
 from player import Player
 from ai import Ai
 
 def main():
-    # Main loop of the game.
+    """Main loop of the game."""
 
     board = Board()
     player1 = Player("Player", "Y")

@@ -1,4 +1,4 @@
-# Test class for the Player class
+"""Test class for the Player class"""
 import unittest
 from player import Player
 from board import Board
@@ -10,7 +10,7 @@ class TestPlayer(unittest.TestCase):
         self.board = Board()
 
     def test_make_move_quit(self):
-        # Test the make_move method of the Player class when the player quits
+        """Test the make_move method of the Player class when the player quits"""
         set_keyboard_input(["q"])
         with self.assertRaises(SystemExit):
             self.player.make_move(self.board)
@@ -18,7 +18,7 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(output, ["Test Player make your move (1-7), or quit (q): "])
 
     def test_make_move(self):
-        # Test the make_move method of the Player class when the player inputs wrong values
+        """Test the make_move method of the Player class when the player inputs wrong values"""
         set_keyboard_input(["e", "10", "1"])
         self.player.make_move(self.board)
         output = get_display_output()
@@ -26,7 +26,7 @@ class TestPlayer(unittest.TestCase):
         self.assertEqual(self.board.board[5][0], "Y")
 
     def test_make_move_full_column(self):
-        # Test the make_move method of the Player class when the player inputs into a full column
+        """Test the make_move method of the Player class when the player inputs into a full column"""
         for i in range(6):
             self.board.make_move(0, "Y")
         set_keyboard_input(["1", "2"])
