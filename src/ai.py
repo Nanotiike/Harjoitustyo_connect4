@@ -15,7 +15,6 @@ class Ai:
         self.not_symbol = "Y" if symbol == "R" else "R"
         self.evaluate = 0
         self.moves = [3,4,2,5,1,6,0]
-        self.test = 0
 
     def make_move_rng(self, board):
         """Makes a random move on the board."""
@@ -25,14 +24,22 @@ class Ai:
 
     def make_move(self, board):
         """Makes a move on the board using the minimax algorithm."""
-        self.minimax(board, 5, True)
+        moves = []
         for column in self.moves:
+            best_move = -100000
             if board.make_move(column, self.symbol):
-                return
+                best_move = max(self.evaluate, self.minimax(board, 3, False))
+                board.undo_move(column)
+                moves.append(best_move)
+                print(column, best_move,moves)
+        for i in range(len(moves)):
+            if moves[i] == max(moves):
+                board.make_move(self.moves[i], self.symbol)
+                break
+            
 
     def minimax(self, board, depth, is_maximizing):
         """The minimax algorithm."""
-        self.test += 1
         if depth == 0 or board.check_for_winner() is not None:
             self.evaluate = self.score(board)
             return self.evaluate

@@ -1,7 +1,10 @@
 """Contains the board class, which is responsible for the game board, making moves and checking for victory."""
+testing_board = [[" "," "," "," "," "," "," "],[" "," "," "," "," "," "," "],[" "," "," "," "," "," "," "],[" "," "," "," "," "," "," "],[" "," "," "," ","R","R"," "],["Y"," "," ","Y","Y","R"," "]]
+play_board = [[" "for _ in range(7)] for _ in range(6)]
+
 class Board:
     def __init__(self):
-        self.board = [[" "for _ in range(7)] for _ in range(6)]
+        self.board = testing_board
 
     def make_move(self, column, symbol):
         """Makes a move in the given column with the given symbol."""

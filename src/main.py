@@ -7,8 +7,8 @@ def main():
     """Main loop of the game."""
 
     board = Board()
-    player1 = Player("Player", "Y")
-    player2 = Ai("Ai", "R")
+    player1 = Ai("Ai1", "Y")
+    player2 = Ai("Ai2", "R")
     while True:
         print(board)
         player1.make_move(board)
@@ -18,7 +18,6 @@ def main():
             break
         print(board)
         player2.make_move(board)
-        print(player2.test)
         if board.check_for_winner() == player2.symbol:
             print(board)
             print(f"{player2.name} wins!")
