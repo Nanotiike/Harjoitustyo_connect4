@@ -31,6 +31,13 @@ class Board:
             if winner is not None:
                 break
         return winner
+    
+    def undo_move(self, column):
+        # Undoes a move in the given column.
+        for i in range(6):
+            if self.board[i][column] != " ":
+                self.board[i][column] = " "
+                break
 
     def __str__(self):
         # Returns the board as a string.
