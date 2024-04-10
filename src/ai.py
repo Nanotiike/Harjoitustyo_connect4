@@ -13,7 +13,6 @@ class Ai:
         self.name = name
         self.symbol = symbol
         self.not_symbol = "Y" if symbol == "R" else "R"
-        self.evaluate = 0
         self.moves = [3,4,2,5,1,6,0]
 
     def make_move_rng(self, board):
@@ -23,57 +22,51 @@ class Ai:
             column = random.randint(0, 6)
         return column
 
-    def make_move(self, board):
+    def choose_move(self, board):
         """Makes a move on the board using the minimax algorithm."""
-        move_values = []
-        moves = []
-        move_made = False
-        for column in self.moves:
-            best_move = -100000
-            if board.make_move(column, self.symbol):
-                best_move = max(self.evaluate, self.minimax(board, 4, False))
-                board.undo_move(column)
-                move_values.append(best_move)
-                moves.append(column)
-                print(column, best_move,move_values,moves)
-        for i in range(len(moves)):
-            if move_values[i] == max(move_values):
-                print("here")
-                move_made = True
-                board.make_move(moves[i], self.symbol)
-                return((moves[i]+1,"minimax"))
-        if not move_made:
-            move = self.make_move_rng(board)
-            return ((move+1,"rng"))
+        move = self.minimax(board, 5, True, 0, 0)
+        return move
             
 
-    def minimax(self, board, depth, is_maximizing):
+    def minimax(self, board, depth, is_maximizing, x, y):
         """The minimax algorithm."""
-        if depth == 0 or board.check_for_winner() is not None:
-            self.evaluate = self.score(depth, board)
-            return self.evaluate
+        evaluate = 0
+        best_move = 0
+        winner = board.check_for_winner(x, y)
+        if winner == self.symbol:
+            return (10000, -1)
+        elif winner == self.not_symbol:
+            return (-10000, -1)
+        # check if board is full, by calculating moves made (42 moves)
+        if depth == 0:
+            evaluate = self.score(depth, board)
+            return (evaluate, -1)
         if is_maximizing:
-            self.evaluate = -100000
+            evaluate = -100000
             for column in self.moves:
-                if board.make_move(column, self.symbol):
-                    # print(column,self.evaluate)
-                    self.evaluate = max(self.evaluate, self.minimax(board, depth - 1, False))
+                row = board.make_move(column, self.symbol)
+                if row != False:
+                    temp = self.minimax(board, depth - 1, False, column, row)
                     board.undo_move(column)
-            return self.evaluate
+                    if evaluate < temp[0]:
+                        evaluate = temp[0]
+                        best_move = column
+            return (evaluate, best_move)
         else:
-            self.evaluate = 100000
+            evaluate = 100000
             for column in self.moves:
-                if board.make_move(column, self.not_symbol):
-                    # print(column,self.evaluate)
-                    self.evaluate = min(self.evaluate, self.minimax(board, depth - 1, True))
+                row = board.make_move(column, self.not_symbol)
+                if row != False:
+                    temp = self.minimax(board, depth - 1, True, column, row)
                     board.undo_move(column)
-            return self.evaluate
+                    if evaluate > temp[0]:
+                        evaluate = temp[0]
+                        best_move = column
+            return (evaluate, best_move)
 
     def score(self, depth, board):
         """How the board is evaluated for minimax."""
-        if board.check_for_winner() == self.symbol:
-            return 100+depth
-        elif board.check_for_winner() == self.not_symbol:
-            return -100-depth
-        else:  
-            return 0
+        return 0
+
+    def check_valid_moves():
+        pass

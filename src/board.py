@@ -12,29 +12,59 @@ class Board:
             for i in range(5, -1, -1):
                 if self.board[i][column] == " ":
                     self.board[i][column] = symbol
-                    return True
+                    return i
             return False
 
-    def check_for_winner(self):
+    def check_for_winner(self, x, y):
         """Checks if there is a winner on the board."""
-        winner = None
-        for i in range(5, -1, -1):
-            for j in range(7):
-                if self.board[i][j] != " ":
-                    if i - 3 >= 0 and self.board[i][j] == self.board[i - 1][j] == self.board[i - 2][j] == self.board[i - 3][j]:
-                        winner = self.board[i][j]
-                    if j + 3 < 7 and self.board[i][j] == self.board[i][j + 1] == self.board[i][j + 2] == self.board[i][j + 3]:
-                        winner = self.board[i][j]
-                    if i + 3 < 6 and j + 3 < 7 and self.board[i][j] == self.board[i + 1][j + 1] == self.board[i + 2][j + 2] == self.board[i + 3][j + 3]:
-                        winner = self.board[i][j]
-                    if i - 3 >= 0 and j + 3 < 7 and self.board[i][j] == self.board[i - 1][j + 1] == self.board[i - 2][j + 2] == self.board[i - 3][j + 3]:
-                        winner = self.board[i][j]
-                if winner is not None:
-                    break
-            if winner is not None:
-                break
-        return winner
-    
+        symbol = self.board[y][x]
+        counter = 1
+        temp = -1
+        while y+temp>=0 and self.board[y+temp][x] == symbol:
+            counter += 1
+            temp -= 1
+        temp = 1
+        while y+temp<=5 and self.board[y+temp][x] == symbol:
+            counter += 1
+            temp += 1
+        if counter >= 4:
+            return symbol
+        counter = 1
+        temp = -1
+        while x+temp>=0 and self.board[y][x+temp] == symbol:
+            counter += 1
+            temp -= 1
+        temp = 1
+        while x+temp<=6 and self.board[y][x+temp] == symbol:
+            counter += 1
+            temp += 1
+        if counter >= 4:
+            return symbol
+        counter = 1
+        temp = -1
+        while y+temp>=0 and x+temp>=0 and self.board[y+temp][x+temp] == symbol:
+            counter += 1
+            temp -= 1
+        temp = 1
+        while y+temp<=5 and x+temp<=6 and self.board[y+temp][x+temp] == symbol:
+            counter += 1
+            temp += 1
+        if counter >= 4:
+            return symbol
+        counter = 1
+        temp = -1
+        while x+temp>=0 and y-temp<=5 and self.board[y-temp][x+temp] == symbol:
+            counter += 1
+            temp -= 1
+        temp = 1
+        while x-temp>=0 and y+temp<=5 and self.board[y+temp][x-temp] == symbol:
+            counter += 1
+            temp += 1
+        if counter >= 4:
+            return symbol
+        return None
+
+
     def undo_move(self, column):
         """Undoes a move in the given column."""
         for i in range(6):

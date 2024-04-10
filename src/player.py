@@ -6,19 +6,21 @@ class Player:
         self.name = name
         self.symbol = symbol
 
-    def make_move(self, board):
+    def choose_move(self, board):
         """Asks the player for input and updates the board according to it."""
         move = input(f"{self.name} make your move (1-7), or quit (q): ")
         if move == "q":
             sys.exit()
-        while not move.isdigit() or not 1 <= int(move) <= 7 or not board.make_move(int(move) - 1, self.symbol):
+        temp = board.make_move(int(move) - 1, self.symbol)
+        while not move.isdigit() or not 1 <= int(move) <= 7 or not temp:
             if not move.isdigit():
                 print("Invalid input, please enter a number")
             elif not 1 <= int(move) <= 7:
                 print("Invalid input, please enter a number between 1 and 7")
-            elif not board.make_move(int(move) - 1, self.symbol):
+            elif not temp:
                 print("Column is full, please choose another column")
             move = input(f"{self.name} make your move (1-7), or quit (q): ")
+            temp = board.make_move(int(move) - 1, self.symbol)
             if move == "q":
                 sys.exit()
-        return ((move,self.name))
+        return (int(move)-1,temp)
