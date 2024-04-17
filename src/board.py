@@ -4,16 +4,16 @@ play_board = [[" "for _ in range(7)] for _ in range(6)]
 
 class Board:
     def __init__(self):
-        self.board = testing_board
+        self.board = play_board
 
     def make_move(self, column, symbol):
         """Makes a move in the given column with the given symbol."""
-        while True:
-            for i in range(5, -1, -1):
-                if self.board[i][column] == " ":
-                    self.board[i][column] = symbol
-                    return i
-            return False
+        # to-do: something wrong with this function
+        for i in range(5, -1, -1):
+            if self.board[i][column] == " ":
+                self.board[i][column] = symbol
+                return i
+        return False
 
     def check_for_winner(self, x, y):
         """Checks if there is a winner on the board."""
@@ -57,7 +57,7 @@ class Board:
             counter += 1
             temp -= 1
         temp = 1
-        while x-temp>=0 and y+temp<=5 and self.board[y+temp][x-temp] == symbol:
+        while x+temp<=6 and y-temp>=0 and self.board[y-temp][x+temp] == symbol:
             counter += 1
             temp += 1
         if counter >= 4:

@@ -37,7 +37,7 @@ class Ai:
             return (10000, -1)
         elif winner == self.not_symbol:
             return (-10000, -1)
-        # check if board is full, by calculating moves made (42 moves)
+        # to-do: check if board is full, by calculating moves made (42 moves)
         if depth == 0:
             evaluate = self.score(depth, board)
             return (evaluate, -1)
@@ -45,7 +45,7 @@ class Ai:
             evaluate = -100000
             for column in self.moves:
                 row = board.make_move(column, self.symbol)
-                if row != False:
+                if row is not False:
                     temp = self.minimax(board, depth - 1, False, column, row)
                     board.undo_move(column)
                     if evaluate < temp[0]:
@@ -56,7 +56,7 @@ class Ai:
             evaluate = 100000
             for column in self.moves:
                 row = board.make_move(column, self.not_symbol)
-                if row != False:
+                if row is not False:
                     temp = self.minimax(board, depth - 1, True, column, row)
                     board.undo_move(column)
                     if evaluate > temp[0]:
