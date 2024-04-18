@@ -39,7 +39,7 @@ class Ai:
             return (-10000, -1)
         # to-do: check if board is full, by calculating moves made (42 moves)
         if depth == 0:
-            evaluate = self.score(depth, board)
+            evaluate = self.score(depth, board, x, y)
             return (evaluate, -1)
         if is_maximizing:
             evaluate = -100000
@@ -64,9 +64,106 @@ class Ai:
                         best_move = column
             return (evaluate, best_move)
 
-    def score(self, depth, board):
+    def score(self, depth, board, x, y):
         """How the board is evaluated for minimax."""
-        return 0
+        score = 0
+        temp = -1
+        while y+temp>=0:
+            if board.board[y+temp][x] == self.symbol:
+                score += 3
+            elif board.board[y+temp][x] == " ":
+                score += 1
+            elif board.board[y+temp][x] == self.not_symbol:
+                score -= 6
+                break
+            elif temp == -3:
+                break
+            temp -= 1
+        temp = 1
+        while y+temp<=5:
+            if board.board[y+temp][x] == self.symbol:
+                score += 3
+            elif board.board[y+temp][x] == " ":
+                score += 1
+            elif board.board[y+temp][x] == self.not_symbol:
+                score -= 6
+                break
+            elif temp == 3:
+                break
+            temp += 1
+        temp = -1
+        while x+temp>=0:
+            if board.board[y][x+temp] == self.symbol:
+                score += 3
+            elif board.board[y][x+temp] == " ":
+                score += 1
+            elif board.board[y][x+temp] == self.not_symbol:
+                score -= 6
+                break
+            elif temp == -3:
+                break
+            temp -= 1
+        temp = 1
+        while x+temp<=6:
+            if board.board[y][x+temp] == self.symbol:
+                score += 3
+            elif board.board[y][x+temp] == " ":
+                score += 1
+            elif board.board[y][x+temp] == self.not_symbol:
+                score -= 6
+                break
+            elif temp == 3:
+                break
+            temp += 1
+        temp = -1
+        while y+temp>=0 and x+temp>=0:
+            if board.board[y+temp][x+temp] == self.symbol:
+                score += 3
+            elif board.board[y+temp][x+temp] == " ":
+                score += 1
+            elif board.board[y+temp][x+temp] == self.not_symbol:
+                score -= 6
+                break
+            elif temp == -3:
+                break
+            temp -= 1
+        temp = 1
+        while y+temp<=5 and x+temp<=6:
+            if board.board[y+temp][x+temp] == self.symbol:
+                score += 3
+            elif board.board[y+temp][x+temp] == " ":
+                score += 1
+            elif board.board[y+temp][x+temp] == self.not_symbol:
+                score -= 6
+                break
+            elif temp == 3:
+                break
+            temp += 1
+        temp = -1
+        while x+temp>=0 and y-temp<=5:
+            if board.board[y-temp][x+temp] == self.symbol:
+                score += 3
+            elif board.board[y-temp][x+temp] == " ":
+                score += 1
+            elif board.board[y-temp][x+temp] == self.not_symbol:
+                score -= 6
+                break
+            elif temp == -3:
+                break
+            temp -= 1
+        temp = 1
+        while x+temp<=6 and y-temp>=0:
+            if board.board[y-temp][x+temp] == self.symbol:
+                score += 3
+            elif board.board[y-temp][x+temp] == " ":
+                score += 1
+            elif board.board[y-temp][x+temp] == self.not_symbol:
+                score -= 6
+                break
+            elif temp == 3:
+                break
+            temp += 1
+        return score-depth
 
     def check_valid_moves():
         pass
