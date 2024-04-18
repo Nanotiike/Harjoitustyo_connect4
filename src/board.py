@@ -8,7 +8,6 @@ class Board:
 
     def make_move(self, column, symbol):
         """Makes a move in the given column with the given symbol."""
-        # to-do: something wrong with this function
         for i in range(5, -1, -1):
             if self.board[i][column] == " ":
                 self.board[i][column] = symbol

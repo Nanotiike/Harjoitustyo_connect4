@@ -12,7 +12,7 @@ class Player:
         if move == "q":
             sys.exit()
         temp = board.make_move(int(move) - 1, self.symbol)
-        while not move.isdigit() or not 1 <= int(move) <= 7 or not temp:
+        while not move.isdigit() or not 1 <= int(move) <= 7 or temp is False:
             if not move.isdigit():
                 print("Invalid input, please enter a number")
             elif not 1 <= int(move) <= 7:
@@ -20,7 +20,7 @@ class Player:
             elif not temp:
                 print("Column is full, please choose another column")
             move = input(f"{self.name} make your move (1-7), or quit (q): ")
-            temp = board.make_move(int(move) - 1, self.symbol)
             if move == "q":
                 sys.exit()
+            temp = board.make_move(int(move) - 1, self.symbol)
         return (int(move)-1,temp)
