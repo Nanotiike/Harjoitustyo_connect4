@@ -24,11 +24,11 @@ class Ai:
 
     def choose_move(self, board, moves_made):
         """Makes a move on the board using the minimax algorithm."""
-        move = self.minimax(board, 5, True, 0, 0, moves_made)
+        move = self.minimax(board, 5, True, -100000, 100000, 0, 0, moves_made)
         return move
             
 
-    def minimax(self, board, depth, is_maximizing, x, y, moves_made):
+    def minimax(self, board, depth, is_maximizing, alpha, beta, x, y, moves_made):
         """The minimax algorithm."""
         evaluate = 0
         best_move = 0
@@ -48,12 +48,15 @@ class Ai:
                 row = board.make_move(column, self.symbol)
                 if row is not False:
                     moves_made += 1
-                    temp = self.minimax(board, depth - 1, False, column, row, moves_made)
+                    temp = self.minimax(board, depth - 1, False, alpha, beta, column, row, moves_made)
                     board.undo_move(column)
                     moves_made -= 1
                     if evaluate < temp[0]:
                         evaluate = temp[0]
                         best_move = column
+                    if temp[0] > beta:
+                        break
+                    alpha = max(alpha, temp[0])
             return (evaluate, best_move)
         else:
             evaluate = 100000
@@ -61,12 +64,15 @@ class Ai:
                 row = board.make_move(column, self.not_symbol)
                 if row is not False:
                     moves_made += 1
-                    temp = self.minimax(board, depth - 1, True, column, row, moves_made)
+                    temp = self.minimax(board, depth - 1, True, alpha, beta, column, row, moves_made)
                     board.undo_move(column)
                     moves_made -= 1
                     if evaluate > temp[0]:
                         evaluate = temp[0]
                         best_move = column
+                    if temp[0] < alpha:
+                        break
+                    beta = min(beta, temp[0])
             return (evaluate, best_move)
 
     def score(self, depth, board, x, y):

@@ -20,7 +20,6 @@ def main():
         if player1.name == "AI Y":
             move1 = player1.choose_move(board, moves_made)
             move12 = board.make_move(move1[1], player1.symbol)
-            print(move1,move12)
         moves_made += 1
         if board.check_for_winner(move1[1],move12) == player1.symbol:
             print(board)
@@ -37,7 +36,6 @@ def main():
         if player2.name == "AI R":
             move2 = player2.choose_move(board, moves_made)
             move22 = board.make_move(move2[1], player2.symbol)
-            print(move2,move22)
         moves_made += 1
         if board.check_for_winner(move2[1],move22) == player2.symbol:
             print(board)
