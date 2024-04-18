@@ -22,13 +22,13 @@ class Ai:
             column = random.randint(0, 6)
         return column
 
-    def choose_move(self, board):
+    def choose_move(self, board, moves_made):
         """Makes a move on the board using the minimax algorithm."""
-        move = self.minimax(board, 5, True, 0, 0)
+        move = self.minimax(board, 5, True, 0, 0, moves_made)
         return move
             
 
-    def minimax(self, board, depth, is_maximizing, x, y):
+    def minimax(self, board, depth, is_maximizing, x, y, moves_made):
         """The minimax algorithm."""
         evaluate = 0
         best_move = 0
@@ -37,7 +37,8 @@ class Ai:
             return (10000, -1)
         elif winner == self.not_symbol:
             return (-10000, -1)
-        # to-do: check if board is full, by calculating moves made (42 moves)
+        if moves_made == 42:
+            return (-1000, -1)
         if depth == 0:
             evaluate = self.score(depth, board, x, y)
             return (evaluate, -1)
@@ -46,8 +47,10 @@ class Ai:
             for column in self.moves:
                 row = board.make_move(column, self.symbol)
                 if row is not False:
-                    temp = self.minimax(board, depth - 1, False, column, row)
+                    moves_made += 1
+                    temp = self.minimax(board, depth - 1, False, column, row, moves_made)
                     board.undo_move(column)
+                    moves_made -= 1
                     if evaluate < temp[0]:
                         evaluate = temp[0]
                         best_move = column
@@ -57,8 +60,10 @@ class Ai:
             for column in self.moves:
                 row = board.make_move(column, self.not_symbol)
                 if row is not False:
-                    temp = self.minimax(board, depth - 1, True, column, row)
+                    moves_made += 1
+                    temp = self.minimax(board, depth - 1, True, column, row, moves_made)
                     board.undo_move(column)
+                    moves_made -= 1
                     if evaluate > temp[0]:
                         evaluate = temp[0]
                         best_move = column

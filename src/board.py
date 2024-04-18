@@ -1,5 +1,4 @@
 """Contains the board class, which is responsible for the game board, making moves and checking for victory."""
-testing_board = [[" "," "," "," "," "," "," "],[" "," "," "," "," "," "," "],[" "," "," "," "," "," "," "],[" "," "," "," "," "," "," "],[" "," "," "," ","R","R"," "],["Y"," "," ","Y","Y","R"," "]]
 play_board = [[" "for _ in range(7)] for _ in range(6)]
 
 class Board:

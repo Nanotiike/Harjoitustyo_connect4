@@ -25,4 +25,4 @@ class Player:
                 sys.exit()
             if move.isdigit() and 1 <= int(move) <= 7:
                 temp = board.make_move(int(move) - 1, self.symbol)
-        return (int(move)-1,temp)
+        return (temp, int(move)-1)
