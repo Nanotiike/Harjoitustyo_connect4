@@ -8,9 +8,9 @@ def main():
 
     moves_made = 0
     board = Board()
-    #player1 = Player("Player Y", "Y")
+    player1 = Player("Player Y", "Y")
     #player2 = Player("Player R", "R")
-    player1 = Ai("AI Y", "Y")
+    #player1 = Ai("AI Y", "Y")
     player2 = Ai("AI R", "R")
     while True:
         print(board)
