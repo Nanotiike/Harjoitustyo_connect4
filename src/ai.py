@@ -12,7 +12,7 @@ class Ai:
     def __init__(self, name, symbol):
         self.name = name
         self.symbol = symbol
-        self.not_symbol = "Y" if symbol == "R" else "R"
+        self.not_symbol = u"\U0001F7E1" if symbol == u"\U0001F534" else u"\U0001F534"
         self.moves = [3,4,2,5,1,6,0]
 
     def make_move_rng(self, board):
@@ -82,7 +82,7 @@ class Ai:
         while y+temp>=0:
             if board.board[y+temp][x] == self.symbol:
                 score += 3
-            elif board.board[y+temp][x] == " ":
+            elif board.board[y+temp][x] == "  ":
                 score += 1
             elif board.board[y+temp][x] == self.not_symbol:
                 score -= 6
@@ -94,7 +94,7 @@ class Ai:
         while y+temp<=5:
             if board.board[y+temp][x] == self.symbol:
                 score += 3
-            elif board.board[y+temp][x] == " ":
+            elif board.board[y+temp][x] == "  ":
                 score += 1
             elif board.board[y+temp][x] == self.not_symbol:
                 score -= 6
@@ -106,7 +106,7 @@ class Ai:
         while x+temp>=0:
             if board.board[y][x+temp] == self.symbol:
                 score += 3
-            elif board.board[y][x+temp] == " ":
+            elif board.board[y][x+temp] == "  ":
                 score += 1
             elif board.board[y][x+temp] == self.not_symbol:
                 score -= 6
@@ -118,7 +118,7 @@ class Ai:
         while x+temp<=6:
             if board.board[y][x+temp] == self.symbol:
                 score += 3
-            elif board.board[y][x+temp] == " ":
+            elif board.board[y][x+temp] == "  ":
                 score += 1
             elif board.board[y][x+temp] == self.not_symbol:
                 score -= 6
@@ -130,7 +130,7 @@ class Ai:
         while y+temp>=0 and x+temp>=0:
             if board.board[y+temp][x+temp] == self.symbol:
                 score += 3
-            elif board.board[y+temp][x+temp] == " ":
+            elif board.board[y+temp][x+temp] == "  ":
                 score += 1
             elif board.board[y+temp][x+temp] == self.not_symbol:
                 score -= 6
@@ -142,7 +142,7 @@ class Ai:
         while y+temp<=5 and x+temp<=6:
             if board.board[y+temp][x+temp] == self.symbol:
                 score += 3
-            elif board.board[y+temp][x+temp] == " ":
+            elif board.board[y+temp][x+temp] == "  ":
                 score += 1
             elif board.board[y+temp][x+temp] == self.not_symbol:
                 score -= 6
@@ -154,7 +154,7 @@ class Ai:
         while x+temp>=0 and y-temp<=5:
             if board.board[y-temp][x+temp] == self.symbol:
                 score += 3
-            elif board.board[y-temp][x+temp] == " ":
+            elif board.board[y-temp][x+temp] == "  ":
                 score += 1
             elif board.board[y-temp][x+temp] == self.not_symbol:
                 score -= 6
@@ -166,7 +166,7 @@ class Ai:
         while x+temp<=6 and y-temp>=0:
             if board.board[y-temp][x+temp] == self.symbol:
                 score += 3
-            elif board.board[y-temp][x+temp] == " ":
+            elif board.board[y-temp][x+temp] == "  ":
                 score += 1
             elif board.board[y-temp][x+temp] == self.not_symbol:
                 score -= 6

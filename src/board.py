@@ -1,5 +1,5 @@
 """Contains the board class, which is responsible for the game board, making moves and checking for victory."""
-play_board = [[" "for _ in range(7)] for _ in range(6)]
+play_board = [["  "for _ in range(7)] for _ in range(6)]
 
 class Board:
     def __init__(self):
@@ -8,7 +8,7 @@ class Board:
     def make_move(self, column, symbol):
         """Makes a move in the given column with the given symbol."""
         for i in range(5, -1, -1):
-            if self.board[i][column] == " ":
+            if self.board[i][column] == "  ":
                 self.board[i][column] = symbol
                 return i
         return False
@@ -66,18 +66,18 @@ class Board:
     def undo_move(self, column):
         """Undoes a move in the given column."""
         for i in range(6):
-            if self.board[i][column] != " ":
-                self.board[i][column] = " "
+            if self.board[i][column] != "  ":
+                self.board[i][column] = "  "
                 break
 
     def __str__(self):
         """Returns the board as a string."""
         board_string = ""
-        board_string += "-----------------------------\n"
+        board_string += "------------------------------------\n"
         for i in range(6):
             board_string += "| "
             for j in range(7):
                 board_string += self.board[i][j] + " | "
-            board_string += "\n-----------------------------\n"
-        board_string += "- 1 - 2 - 3 - 4 - 5 - 6 - 7 -"
+            board_string += "\n------------------------------------\n"
+        board_string += "-  1 -  2 -  3 -  4 -  5 -  6 -  7 -"
         return board_string

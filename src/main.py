@@ -8,10 +8,10 @@ def main():
 
     moves_made = 0
     board = Board()
-    player1 = Player("Player Y", "Y")
-    #player2 = Player("Player R", "R")
-    #player1 = Ai("AI Y", "Y")
-    player2 = Ai("AI R", "R")
+    player1 = Player("Player Y", u"\U0001F7E1")
+    #player2 = Player("Player R", u"\U0001F534")
+    #player1 = Ai("AI Y", u"\U0001F7E1")
+    player2 = Ai("AI R", u"\U0001F534")
     while True:
         print(board)
         if player1.name == "Player Y":

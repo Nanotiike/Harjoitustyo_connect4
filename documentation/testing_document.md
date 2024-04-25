@@ -22,8 +22,10 @@ Testing of the AI class and the minimax algorithm:
 ## How can the tests be repeated?
 
 Tests can be done using the following command:
-
-
-
+```
+poetry run invoke test
+```
 Test coverage can be recieved with the following command:
-
+```
+poetry run invoke coverage-report
+```
