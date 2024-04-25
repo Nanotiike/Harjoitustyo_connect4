@@ -8,11 +8,24 @@ class TestBoard(unittest.TestCase):
     
     def test_print_board(self):
         """Test the __str__ method of the Board class"""
-        self.assertEqual(str(self.board), "-----------------------------\n|   |   |   |   |   |   |   | \n-----------------------------\n|   |   |   |   |   |   |   | \n-----------------------------\n|   |   |   |   |   |   |   | \n-----------------------------\n|   |   |   |   |   |   |   | \n-----------------------------\n|   |   |   |   |   |   |   | \n-----------------------------\n|   |   |   |   |   |   |   | \n-----------------------------\n- 1 - 2 - 3 - 4 - 5 - 6 - 7 -")
-
+        self.assertEqual(str(self.board), "------------------------------------\
+|    |    |    |    |    |    |    | \
+------------------------------------\
+|    |    |    |    |    |    |    | \
+------------------------------------\
+|    |    |    |    |    |    |    | \
+------------------------------------\
+|    |    |    |    |    |    |    | \
+------------------------------------\
+|    |    |    |    |    |    |    | \
+------------------------------------\
+|    |    |    |    |    |    |    | \
+------------------------------------\
+-  1 -  2 -  3 -  4 -  5 -  6 -  7 -")
+                         
     def test_make_move_success(self):
         """Test the make_move method of the Board class is successful"""
-        self.assertTrue(self.board.make_move(0, "Y"))
+        self.assertEqual(self.board.make_move(0, "Y"), 5)
         self.assertEqual(self.board.board[5][0], "Y")
     
     def test_make_move_failure(self):
@@ -30,7 +43,7 @@ class TestBoard(unittest.TestCase):
                             [" ", " ", " ", " ", " ", " ", " "],
                             [" ", " ", " ", " ", " ", " ", " "],
                             ["Y", "Y", "Y", "Y", " ", " ", " "]]
-        self.assertEqual(self.board.check_for_winner(), "Y")
+        self.assertEqual(self.board.check_for_winner(0,5), "Y")
 
     def test_check_for_winner_vertical(self):
         """Test the check_for_winner method of the Board class for a vertical win"""
@@ -40,7 +53,7 @@ class TestBoard(unittest.TestCase):
                             ["Y", " ", " ", " ", " ", " ", " "],
                             ["Y", " ", " ", " ", " ", " ", " "],
                             ["Y", " ", " ", " ", " ", " ", " "]]
-        self.assertEqual(self.board.check_for_winner(), "Y")
+        self.assertEqual(self.board.check_for_winner(0,5), "Y")
 
     def test_check_for_winner_diagonal_1(self):
         """Test the check_for_winner method of the Board class for a diagonal win from bottom left to top right"""
@@ -50,7 +63,7 @@ class TestBoard(unittest.TestCase):
                             [" ", " ", "Y", " ", " ", " ", " "],
                             [" ", "Y", " ", " ", " ", " ", " "],
                             ["Y", " ", " ", " ", " ", " ", " "]]
-        self.assertEqual(self.board.check_for_winner(), "Y")
+        self.assertEqual(self.board.check_for_winner(0,5), "Y")
 
     def test_check_for_winner_diagonal_2(self):
         """Test the check_for_winner method of the Board class for a diagonal win from top left to bottom right"""
@@ -60,7 +73,7 @@ class TestBoard(unittest.TestCase):
                             [" ", " ", " ", "Y", " ", " ", " "],
                             [" ", " ", " ", " ", " ", " ", " "],
                             [" ", " ", " ", " ", " ", " ", " "]]
-        self.assertEqual(self.board.check_for_winner(), "Y")
+        self.assertEqual(self.board.check_for_winner(0,0), "Y")
     
     def test_check_for_winner_no_winner(self):
         """Test the check_for_winner method of the Board class when there is no winner"""
@@ -70,4 +83,7 @@ class TestBoard(unittest.TestCase):
                             [" ", "Y", " ", " ", " ", " ", " "],
                             [" ", "R", " ", " ", " ", " ", " "],
                             ["Y", "Y", "R", "Y", " ", " ", " "]]
-        self.assertEqual(self.board.check_for_winner(), None)
+        self.assertEqual(self.board.check_for_winner(1,5), None)
+
+    def test_undo_move(self):
+        pass
