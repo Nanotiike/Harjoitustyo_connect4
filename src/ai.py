@@ -1,3 +1,5 @@
+import time
+
 """Contains Ai class which will be the main focus of the project. 
 The Ai class will use the minimax algorithm and alhpa-beta pruning algorithm."""
 """The minimax algorithm is an algorithm used for two-player games. 
@@ -17,7 +19,7 @@ class Ai:
 
     def choose_move(self, board, moves_made):
         """Makes a move on the board using the minimax algorithm."""
-        move = self.minimax(board, 5, True, -100000, 100000, 0, 0, moves_made)
+        move = self.iterative_deepening(3, board, moves_made, 1.5)
         return move
 
     def minimax(self, board, depth, is_maximizing, alpha, beta, x, y, moves_made):
@@ -168,5 +170,18 @@ class Ai:
             temp += 1
         return score-depth
 
-    def check_valid_moves():
-        pass
+    def iterative_deepening(self, depth, board, moves_made, timelimit):
+        current_time = time.time()
+        max_time = current_time + timelimit
+        best_move = (0, 0)
+        while True:
+            if time.time() >= max_time:
+                break
+            value = self.minimax(board, depth, True, -100000, 100000, 0, 0, moves_made)
+            if value[0] == 10000 or value[0] == -10000:
+                best_move = value
+                break
+            if value[0] > best_move[0]:
+                best_move = value
+            depth += 1
+        return best_move
