@@ -1,4 +1,4 @@
-"""Contains the board class, which is responsible for the game board, making moves and checking for victory."""
+"""Contains the board class. Responsible for the game board, making moves and checking for victory."""
 play_board = [["  "for _ in range(7)] for _ in range(6)]
 
 class Board:

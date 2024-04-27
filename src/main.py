@@ -8,10 +8,10 @@ def main():
 
     moves_made = 0
     board = Board()
-    player1 = Player("Player Y", u"\U0001F7E1")
-    #player2 = Player("Player R", u"\U0001F534")
-    #player1 = Ai("AI Y", u"\U0001F7E1")
-    player2 = Ai("AI R", u"\U0001F534")
+    player1 = Player("Player Y", "\U0001F7E1")
+    #player2 = Player("Player R", "\U0001F534")
+    #player1 = Ai("AI Y", "\U0001F7E1", "\U0001F534")
+    player2 = Ai("AI R", "\U0001F534", "\U0001F7E1")
     while True:
         print(board)
         if player1.name == "Player Y":
@@ -25,7 +25,7 @@ def main():
             print(board)
             print(f"{player1.name} wins!")
             break
-        elif moves_made == 42:
+        if moves_made == 42:
             print(board)
             print("It's a tie!")
             break
@@ -41,7 +41,7 @@ def main():
             print(board)
             print(f"{player2.name} wins!")
             break
-        elif moves_made == 42:
+        if moves_made == 42:
             print(board)
             print("It's a tie!")
             break

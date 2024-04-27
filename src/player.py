@@ -1,4 +1,4 @@
-"""Contains the player class, which is used to represent a player in the game and handles player inputs."""
+"""Contains the player class. Used to represent a player in the game and handles player inputs."""
 import sys
 
 class Player:
