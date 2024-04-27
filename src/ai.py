@@ -30,7 +30,7 @@ class Ai:
         if winner == self.not_symbol:
             return (-10000, -1)
         if moves_made == 42:
-            return (-1000, -1)
+            return (0, -1)
         if depth == 0:
             evaluate = self.score(depth, board, x, y)
             return (evaluate, -1)
