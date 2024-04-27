@@ -11,14 +11,11 @@ Testing of the game functions in the board.py file:
 - Printing of the board is succesful
 - make_move function works correctly, both in success and failure
 - undo_move works correctly
-- check_for_winner correctly identifies if there is a winner
-  - horizontally
-  - vertically
-  - diagonally
+- check_for_winner correctly identifies if there is a winner in all directions
 
 Testing of the player class:
 
-- player choose_move works correclty in all scenarios
+- player choose_move works correctly in the following scenarios:
   - incorrect input
   - column full
   - quit
