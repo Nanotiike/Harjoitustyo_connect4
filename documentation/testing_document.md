@@ -2,6 +2,8 @@
 
 ## The coverage report of the unit tests.
 
+![Coverage report](https://github.com/Nanotiike/Harjoitustyo_connect4/blob/main/documentation/images/coverage.png)
+
 ## What has been tested and how?
 
 Testing of the game functions in the board.py file:
