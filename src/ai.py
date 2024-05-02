@@ -173,15 +173,11 @@ class Ai:
     def iterative_deepening(self, depth, board, moves_made, timelimit):
         current_time = time.time()
         max_time = current_time + timelimit
-        best_move = (0, 0)
         while True:
             if time.time() >= max_time:
                 break
             value = self.minimax(board, depth, True, -100000, 100000, 0, 0, moves_made)
             if value[0] == 10000 or value[0] == -10000:
-                best_move = value
                 break
-            if value[0] > best_move[0]:
-                best_move = value
             depth += 1
-        return best_move
+        return value
