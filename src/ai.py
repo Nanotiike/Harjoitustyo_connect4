@@ -38,6 +38,10 @@ class Ai:
             return (evaluate, -1)
         if is_maximizing:
             evaluate = -100000
+            #hash_key = hash(str(board.board))
+            #best_move = hash_table.get(hash_key)
+            #if best_move is not None:
+                #remake the move list to include the best move as first element
             for column in self.moves:
                 row = board.make_move(column, self.symbol)
                 if row is not False:
@@ -51,9 +55,11 @@ class Ai:
                     if temp[0] > beta:
                         break
                     alpha = max(alpha, temp[0])
+            #hash_table[hash_key] = best_move
             return (evaluate, best_move)
         else:
             evaluate = 100000
+            #copy hash changes here as well
             for column in self.moves:
                 row = board.make_move(column, self.not_symbol)
                 if row is not False:
@@ -173,11 +179,12 @@ class Ai:
     def iterative_deepening(self, depth, board, moves_made, timelimit):
         current_time = time.time()
         max_time = current_time + timelimit
+        #hash_table = {}
         while True:
-            if time.time() >= max_time:
-                break
             value = self.minimax(board, depth, True, -100000, 100000, 0, 0, moves_made)
             if value[0] == 10000 or value[0] == -10000:
+                break
+            if time.time() >= max_time:
                 break
             depth += 1
         return value
