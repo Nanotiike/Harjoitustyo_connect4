@@ -35,8 +35,12 @@ I have used gihub copilot to help write the code faster as well as copy sections
 References used in making this game.
 
 https://en.wikipedia.org/wiki/Minimax
+
 https://en.wikipedia.org/wiki/Alpha%E2%80%93beta_pruning
+
 https://www.neverstopbuilding.com/blog/minimax
+
 https://en.wikipedia.org/wiki/Space_complexity
+
 https://en.wikipedia.org/wiki/Time_complexity
 
