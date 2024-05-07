@@ -25,6 +25,7 @@ Testing of the AI class and the minimax algorithm:
 
 - minimax algorithm putputs the correct choice when:
   - winning is possible
+      - winning is possible in 2 moves
   - enemy win in the next move
   - tie happens
 
