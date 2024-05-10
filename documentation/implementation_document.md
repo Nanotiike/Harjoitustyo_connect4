@@ -11,20 +11,14 @@ The general structure consists of four main parts:
 
 ## The time and space complexities
 
-Looking at the time and space complexities of the game, with n being the number of legal moves and m being the maximum depth of the tree:
-
-- Space complexity: The game uses both minimax and alpha-beta pruning. The space complexity for minimax is O(nm). Alpha-beta pruning doesn't make this lesser in the worst case scenario, but in the best case scenario it would be O(n(m/2)).
-
-- Time complexity: Similarly to space, time complexcity for minimax is O(n^m). With alpha-beta pruning the time complexity in the worst case is the same, but in the best case scenario, it is O(n^(m/2)).
-
-## Potentially, performance and Big O analysis comparison
-
-Big O analysis comparison for the game
+The code uses minimax algorithm, thus the Big O time for the code will always be O(m^d), where m is the number of possible moves and d is the maximum depth the algorithm goes. The code does employ alpha-beta pruning, iterative deepening, and a hash table, all to improve on the minimax algorithm. And in the best or avarage scenario it is far faster than the base minimax. Still they don't change the algorithm and there can be scenarios where the minimax cannot apply any of the improvements, thus the time complexity remains the same.
+The space complexity for the algorithm is O(md) where m is the number of possible moves and d is the maximum depth the algorithm goes to. 
 
 ## Potential shortcomings and suggested improvements of the work.
 
 - The user interface is currently text based. That could easily be switched to a more sophisticated user interface. 
 - The code is currently set up as player vs AI, but the code could support player vs player or AI vs AI modes. This could be implemented to allow for different versions of the game.
+- Currently the player always starts first. This does give the player a small advantage, but considering how difficult it is to win against the AI its fine. But the code could be set up to randomize the starting player.
 
 ## Use of extensive language models 
 
