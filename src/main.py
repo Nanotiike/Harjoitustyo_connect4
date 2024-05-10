@@ -4,7 +4,7 @@ from player import Player
 from ai import Ai
 
 def main():
-    """Main loop of the game."""
+    """Main loop of the game. Starting with the players turn, then the ai's turn. The game ends when a player wins or the board is full."""
 
     moves_made = 0
     board = Board()
@@ -12,8 +12,14 @@ def main():
         player1 = Player("Player Y", "\U0001F7E1")
     except:
         player1 = Player("Player Y", "YY")
-    #player2 = Player("Player R", "\U0001F534")
-    #player1 = Ai("AI Y", "\U0001F7E1", "\U0001F534")
+    #try:
+    #    player2 = Player("Player R", "\U0001F534")
+    #except:
+    #    player2 = Player("Player R", "RR")
+    #try:
+    #    player1 = Ai("AI Y", "\U0001F7E1", "\U0001F534")
+    #except:
+    #    player1 = Ai("AI Y", "YY", "RR")
     try:
         player2 = Ai("AI R", "\U0001F534", "\U0001F7E1")
     except:

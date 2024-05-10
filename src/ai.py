@@ -7,8 +7,13 @@ The minimax algorithm is a recusrisve algorithm used to determine the best possi
 The algorithm assumes that the opponent will play the best possible move for them, thus the algorithm will try to minimize the maximum loss."""
 """The alpha-beta pruning algorithm is an optimization technique for the minimax algorithm. 
 It reduces the number of nodes that are evaluated by the minimax algorithm in its search tree. 
-The algorithm maintains two values, alpha and beta, which represent the minimum score that the maximizing player is assured of and the maximum score that the minimizing player is assured of respectively. 
+The algorithm maintains two values, alpha and beta, 
+which represent the minimum score that the maximizing player is assured of and the maximum score that the minimizing player is assured of respectively. 
 Based on these two values the algorithm prunes the nodes that are not needed to be evaluated."""
+"""The iterative deepening algorithm is an addition to minimax that starts the algorithm at a defined depth and increases the depth until a time limit is reached."""
+"""The hash table is used to store the best moves for a given board state. 
+If the minimax algorithm reaches a board state that has already been evaluated, 
+it uses the hash table to get the best move for that state and uses it as a starting point."""
 
 class Ai:
     def __init__(self, name, symbol, not_symbol):
@@ -22,7 +27,7 @@ class Ai:
         return move
 
     def minimax(self, board, depth, is_maximizing, alpha, beta, x, y, moves_made, hash_table):
-        """The minimax algorithm."""
+        """The minimax algorithm, with alpha-beta pruning and a hash table to store the best moves."""
         moves = [3,4,2,5,1,6,0]
         winner = board.check_for_winner(x, y)
         if winner == self.symbol:
@@ -80,7 +85,9 @@ class Ai:
             return (evaluate, best_move)
 
     def score(self, depth, board, x, y):
-        """How the board is evaluated for minimax."""
+        """How the board is evaluated for minimax. 
+        The function scores the position based on the number of own pieces, 
+        empty spaces, and opponent pieces close to the specified position."""
         score = 0
         temp = -1
         while y+temp>=0:
@@ -181,6 +188,7 @@ class Ai:
         return score-depth
 
     def iterative_deepening(self, depth, board, moves_made, timelimit):
+        """Iterative deepening algorithm. Starts at a defined depth and increases the depth until the time limit is reached."""
         current_time = time.time()
         max_time = current_time + timelimit
         hash_table = {}

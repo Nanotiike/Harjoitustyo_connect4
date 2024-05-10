@@ -3,20 +3,30 @@ import unittest
 from board import Board
 
 class TestBoard(unittest.TestCase):
+
+    maxDiff = None
+
     def setUp(self):
         self.board = Board()
         self.board.board = [["  "for _ in range(7)] for _ in range(6)]
     
     def test_print_board(self):
         """Test the __str__ method of the Board class"""
-        board_string = ""
-        board_string += "------------------------------------\n"
-        for i in range(6):
-            board_string += "| "
-            for j in range(7):
-                board_string += self.board.board[i][j] + " | "
-            board_string += "\n------------------------------------\n"
-        board_string += "-  1 -  2 -  3 -  4 -  5 -  6 -  7 -"
+        board_string = "\
+------------------------------------\n\
+|    |    |    |    |    |    |    | \
+\n------------------------------------\n\
+|    |    |    |    |    |    |    | \
+\n------------------------------------\n\
+|    |    |    |    |    |    |    | \
+\n------------------------------------\n\
+|    |    |    |    |    |    |    | \
+\n------------------------------------\n\
+|    |    |    |    |    |    |    | \
+\n------------------------------------\n\
+|    |    |    |    |    |    |    | \
+\n------------------------------------\n\
+-  1 -  2 -  3 -  4 -  5 -  6 -  7 -"
         self.assertEqual(str(self.board), board_string)
                          
     def test_make_move_success(self):
@@ -83,5 +93,9 @@ class TestBoard(unittest.TestCase):
 
     def test_undo_move(self):
         self.board.make_move(0, "Y")
+        self.board.undo_move(0)
+        self.assertEqual(self.board.board[5][0], "  ")
+
+    def test_undo_move_nothing(self):
         self.board.undo_move(0)
         self.assertEqual(self.board.board[5][0], "  ")

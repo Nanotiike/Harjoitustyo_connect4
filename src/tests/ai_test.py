@@ -36,7 +36,6 @@ class TestAi(unittest.TestCase):
         self.assertEqual(self.ai.choose_move(self.board, 0), (10000, 1))
         self.board.make_move(1, "Y")
         self.board.make_move(4, "R")
-        print(self.board)
         self.assertEqual(self.ai.choose_move(self.board, 0), (10000, 0))
 
     def test_block_winning_move(self):

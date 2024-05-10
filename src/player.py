@@ -7,7 +7,9 @@ class Player:
         self.symbol = symbol
 
     def choose_move(self, board):
-        """Asks the player for input and updates the board according to it."""
+        """Asks the player for input and makes the move on the board according to it. 
+        If the input is not correct, it will ask again. 
+        If the player wants to quit, the game will exit."""
         move = input(f"{self.name} make your move (1-7), or quit (q): ")
         if move == "q":
             sys.exit()
